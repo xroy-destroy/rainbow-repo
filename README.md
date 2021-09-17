@@ -76,10 +76,54 @@ My object is to establish a procedure to efficiently initialze and maintain a cl
 7. Configure git to your username 
         $ git config --global user.name "user-name"
         $ git config --global user.email "user@email.com"
-    - "--global" tells git to keep these configurations default for all repositories
+  - "--global" tells git to keep these configurations default for all repositories
 
 8. Create orange.html and blue.html pages
     - Add boilerplate, make it cute!
 
-9. Stage & commit $ git -m "Create blue and orange pages."
+9. Stage & commit the blue and orange html files
+        $ git add .
+        $ git -m "Create blue and orange pages."
+      
+                MY REPOSITORY STATUS
+    ----------------------------------------------
+        Changes not staged for commit:
+        (use "git add <file>..." to update what will be committed)
+        (use "git restore <file>..." to discard changes in working directory)
+            modified:   README.md
+        
+        Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+            blue.html
+            orange.html
+
+
+                NEW REPOSITORY STATUS
+    ----------------------------------------------
+        Changes to be committed:
+        (use "git restore --staged <file>..." to unstage)
+            modified:   README.md
+            new file:   blue.html
+            new file:   orange.html
+
+10. Modify the HTML pages by adding links, and stage them $ git add .
+    - A modified file in the working directory will be red
+    - A staged file will be green
+
+        Changes not staged for commit:
+            modified:   README.md
+            modified:   blue.html
+            modified:   index.html
+            modified:   orange.html
+    ----------------------------------------------
+        Changes to be committed:
+            modified:   README.md
+            modified:   blue.html
+            modified:   index.html
+            modified:   orange.html
+
+11. Commit the changes $ git -m "Add navigation links."
+	
+
+
 
