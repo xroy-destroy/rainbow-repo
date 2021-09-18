@@ -25,7 +25,7 @@ My object is to establish a procedure to efficiently initialze and maintain a cl
 
         nothing added to commit but untracked files present (use "git add" to track)
 
-4. Stage a Snapshot $ git add index.html & check it $ git status
+4. Stage a Snapshot $ git add . and check the repository status $ git status
     - index.html is now staged for a commit
     - a staged file is a tracked file
     - these tracked files can be updated, or removed, before a commit
@@ -122,8 +122,69 @@ My object is to establish a procedure to efficiently initialze and maintain a cl
             modified:   index.html
             modified:   orange.html
 
-11. Commit the changes $ git -m "Add navigation links."
-	
+11. Commit the changes $ git -m "Add navigation links." and review $ git status
+  
+                  REPOSITORY STATUS
+    ----------------------------------------------
+        On branch main
+        
+    nothing to commit, working tree clean
 
+12. For a simplified log review of a particular file file, $ git log --oneline <file>
+    - Ex1: git log --oneline index.html
+    - Ex2: git log --oneline blue.html
+    - Note that only commits involving that file are listed
+    - "e304f33" is the checksum ID
+    -(head-->main) head is commited, main is main branch
 
+        $ git log --oneline blue.html
+        e304f33 (HEAD -> main) Add navigation links.
+        46e2663 Create orange and blue html pages.
+        
+        $ git log --oneline index.html
+        e304f33 (HEAD -> main) Add navigation links.
+        cbb19fa Create index page.
 
+COMMANDS USED SO FAR
+----------------------------------------------
+git init
+
+git status
+
+git add <file>
+
+git commit -m ""
+
+git log --oneline <file> (or no file)
+
+git config --global user.name "name"
+
+git config --global user.email "email"
+
+1. Pull up a simplified log and checkout a previous repository snapshot
+        $ git log --oneline
+        $ git checkout <checksumID#>
+    - The repository is now identical to what it was like when "Create orange and blue html pages" was committed.
+    - this puts the tree in a "detached HEAD" state
+
+2. Check out the very first revision
+        $ git log --oneline
+        $ git checkout <checksumeID#>
+
+        Previous HEAD position was 46e2663 Create orange and blue html pages.
+        HEAD is now at cbb19fa Create index page.
+
+3. Check the log and the git status
+    - note that there are no other present commits and the HEAD is detached
+    - everything is fine, however, because the status shows that this is not the current state of the main branch, as it no longer says "on branch main" like previous statuses
+
+        HEAD detached at cbb19fa
+        nothing to commit, working tree clean
+
+4. Return to the current version of the repository
+        $ git checkout main
+    - the working directory now matches the main branch
+    - orange, blue, and index are updated
+
+        Previous HEAD position was cbb19fa Create index page.
+        Switched to branch 'main'
