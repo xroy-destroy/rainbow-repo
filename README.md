@@ -188,3 +188,6 @@ git config --global user.email "email"
 
         Previous HEAD position was cbb19fa Create index page.
         Switched to branch 'main'
+
+5. Tag the current state of the project as the latest stable release
+    - a tag delineates a project milestone via versions
