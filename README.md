@@ -190,4 +190,6 @@ git config --global user.email "email"
         Switched to branch 'main'
 
 5. Tag the current state of the project as the latest stable release
+        $ git tag -a v1.0 - "Stable version of the website" 
     - a tag delineates a project milestone via versions
+    - the above is an annotated tag as indicated by the "-a" flag
