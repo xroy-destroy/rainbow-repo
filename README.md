@@ -196,7 +196,7 @@ git config --global user.email "email"
 
 6. Scrap the experimental site after viewing the first version 1.0 $ git checkout v1.0
         $ git revert <checksumID#>
-    - all changes are removed, but the changes are still stored
+    - all changes are reverted, but the changes are still stored
     - the commit message for the reverted commit will now be preceeded with "Revert ..."
 
                 GIT LOG
@@ -211,6 +211,29 @@ git config --global user.email "email"
         cbb19fa Create index page.
 
 7. Add dummy.html, and create a nav link within index to that dummy page
-    - it is not possible to rever this page as it is not committed, and therefore has no commit ID#
+    - it is not possible to revert this page as it is not committed, and therefore has no commit ID#
 
-8. Undo the uncommitted changes to the snapshot
+8. Undo the uncommitted changes to the snapshot $ git reset --hard
+    - this undoes the modifications to a tracked file
+    - without the --hard flag, the file would simply be unstaged
+    - 'reset' only works within the staging area and working directory
+
+                $ GIT RESET --HARD
+    ----------------------------------------------
+        HEAD is now at 5d52ff1 Update README with dummy.html instructions to undo uncommitted changes
+
+9. dummy.html remains untracked, so delete it with $ git clean -f
+    - both 'reset' and 'clean' operate on the working directory and are PERMANENT
+
+COMMANDS USED SO FAR
+----------------------------------------------
+git checkout <commit-id>
+
+git tag -a <tag-name> -m "<description>"
+
+git revert <commit-id>
+
+git reset --hard
+
+git clean -f
+
