@@ -252,4 +252,122 @@ BRANCHES
     - Git calls the current checkout "HEAD"
 
 3. Create a new branch named 'rainbow' $ git branch rainbow
+    - while a branch was created, the branch is still not checked out
+
+    * main
+      rainbow
+
+4. Checkout the rainbow branch and add rainbow styling to experimentalrevert.html
+
+5. Stage and commit the newly styled experimentalrevert file to the rainbow branch
+    - note that the git log shows that the current head is on the -> rainbow branch
+
+                GIT LOG
+    ----------------------------------------------
+        6db5af8 (HEAD -> rainbow) Add rainbow text to experimentalrevert.html
+        4781460 Add experimental revert page
+        7a3645a (tag: v1.0) Update README with tag instruction
+        6a25791 Update README
+        e304f33 Add navigation links.
+        46e2663 Create orange and blue html pages.
+        f870d73 Establish a procedure to efficiently initialze and maintain a clean repository.
+        cbb19fa Create index page.
+
+6. Update the file name for experimentalrevert.html to rainbow.html
+    - the file experimentalrevert.html is considered to be deleted
+    - the replacement is now an untracked file
+
+                GIT STATUS
+    ----------------------------------------------
+        On branch rainbow
+
+        Changes not staged for commit:
+        (use "git add/rm <file>..." to update what will be committed)
+        (use "git restore <file>..." to discard changes in working directory)
+            deleted:    experimentalrevert.html
+
+        Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+            rainbow.html
+
+7. Tell Git to stop tracking experimentalrevert.html and to track rainbow.html
+        $ git rm experimentalrevert.html
+        $ git add rainbow.html
+    - Git understands that the file is being renamed
+
+                GIT STATUS
+    ----------------------------------------------
+    On branch rainbow
+        Changes to be committed:
+        (use "git restore --staged <file>..." to unstage)
+            modified:   README.md
+            renamed:    experimentalrevert.html -> rainbow.html
+
+8. Commit all changes with an appropriate message about changing file names and updating the README, then checkout the main branch and check its log
+    - note that none of the commits on the rainbow branch are present within the main branch
+    - they only share history until checksum ID 478
+
+                GIT LOG (main)
+    ----------------------------------------------
+        3c6fcb5 (HEAD -> main) Update README with branch creation instructions
+        a04c7af Update README with command list
+        5d52ff1 Update README with dummy.html instructions to undo uncommitted changes
+        dfda58c Revert "Add experimental revert page"
+        4781460 Add experimental revert page
+        7a3645a (tag: v1.0) Update README with tag instruction
+        6a25791 Update README
+        e304f33 Add navigation links.
+        46e2663 Create orange and blue html pages.
+        f870d73 Establish a procedure to efficiently initialze and maintain a clean repository.
+        cbb19fa Create index page.
+
+9. Create and checkout a CSS branch, and then add a CSS stylesheet to to the working directory
+
+10. Commit the changes with the message "Add CSS stylesheet" 
+
+11. Link the stylesheet to the html files and commit "Link HTML pages to stylesheet"
+
+12. Merge the CSS branch to the main branch $ git merge css
+    - this will only affect the main branch, as the css branch is already up to date with main
+    - each HTML document has the style sheet linked, note the "1 +" line added to each
+    - "fast-forward" means that the tip, or added commits, of the css branch is tacked onto the main branch
+    - branch css is now a redundant branch
+
+                $ git merge css
+    ----------------------------------------------        
+        Updating 3c6fcb5..ee1d1e0
+        Fast-forward
+        blue.html   |  1 +
+        index.html  |  1 +
+        orange.html |  1 +
+        style.css   | 13 +++++++++++++
+        4 files changed, 16 insertions(+)
+        create mode 100644 style.css
+
+                GIT LOG (main)
+    ----------------------------------------------
+        ee1d1e0 (HEAD -> main, css) Link HTML pages to stylesheet
+        08027c0 Add CSS stylesheet
+        3c6fcb5 Update README with branch creation instructions
+        a04c7af Update README with command list
+        5d52ff1 Update README with dummy.html instructions to undo uncommitted changes
+        dfda58c Revert "Add experimental revert page"
+        4781460 Add experimental revert page
+        7a3645a (tag: v1.0) Update README with tag instruction
+        6a25791 Update README
+        e304f33 Add navigation links.
+        46e2663 Create orange and blue html pages.
+        f870d73 Establish a procedure to efficiently initialze and maintain a clean repository.
+        cbb19fa Create index page.
+
+13. Delete the redundant CSS branch $ git branch -d css
+    - the css branch is now fully integrated, and is no longer differentiated from main
+    - note that the rainbow branch is not affected
+
+                GIT BRANCH
+    ----------------------------------------------
+        Deleted branch css (was ee1d1e0).
+        * main
+        rainbow
+
 
