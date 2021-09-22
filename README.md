@@ -237,3 +237,19 @@ git reset --hard
 
 git clean -f
 
+----------------------------------------------
+BRANCHES
+----------------------------------------------
+
+1. List the existing branches for this project $ git branch
+    - the asterisk indicates that the branch is currently checked out
+    - there are no branches at this time
+
+        * main
+
+2. View the git log and checkout the experimental page added for the revert
+    - 'detached head' state means that any changes made to this branch will be discarded if not committed
+    - Git calls the current checkout "HEAD"
+
+3. Create a new branch named 'rainbow' $ git branch rainbow
+
