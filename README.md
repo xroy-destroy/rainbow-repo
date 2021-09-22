@@ -193,3 +193,114 @@ git config --global user.email "email"
         $ git tag -a v1.0 - "Stable version of the website" 
     - a tag delineates a project milestone via versions
     - the above is an annotated tag as indicated by the "-a" flag
+
+6. Scrap the experimental site after viewing the first version 1.0 $ git checkout v1.0
+        $ git revert <checksumID#>
+    - all changes are reverted, but the changes are still stored
+    - the commit message for the reverted commit will now be preceeded with "Revert ..."
+
+                GIT LOG
+    ----------------------------------------------    
+        dfda58c (HEAD -> main) Revert "Add experimental revert page"
+        4781460 Add experimental revert page
+        7a3645a (tag: v1.0) Update README with tag instruction
+        6a25791 Update README
+        e304f33 Add navigation links.
+        46e2663 Create orange and blue html pages.
+        f870d73 Establish a procedure to efficiently initialze and maintain a clean repository.
+        cbb19fa Create index page.
+
+7. Add dummy.html, and create a nav link within index to that dummy page
+    - it is not possible to revert this page as it is not committed, and therefore has no commit ID#
+
+8. Undo the uncommitted changes to the snapshot $ git reset --hard
+    - this undoes the modifications to a tracked file
+    - without the --hard flag, the file would simply be unstaged
+    - 'reset' only works within the staging area and working directory
+
+                $ GIT RESET --HARD
+    ----------------------------------------------
+        HEAD is now at 5d52ff1 Update README with dummy.html instructions to undo uncommitted changes
+
+9. dummy.html remains untracked, so delete it with $ git clean -f
+    - both 'reset' and 'clean' operate on the working directory and are PERMANENT
+
+COMMANDS USED SO FAR
+----------------------------------------------
+git checkout <commit-id>
+
+git tag -a <tag-name> -m "<description>"
+
+git revert <commit-id>
+
+git reset --hard
+
+git clean -f
+
+----------------------------------------------
+BRANCHES
+----------------------------------------------
+
+1. List the existing branches for this project $ git branch
+    - the asterisk indicates that the branch is currently checked out
+    - there are no branches at this time
+
+        * main
+
+2. View the git log and checkout the experimental page added for the revert
+    - 'detached head' state means that any changes made to this branch will be discarded if not committed
+    - Git calls the current checkout "HEAD"
+
+3. Create a new branch named 'rainbow' $ git branch rainbow
+    - while a branch was created, the branch is still not checked out
+
+    * main
+      rainbow
+
+4. Checkout the rainbow branch and add rainbow styling to experimentalrevert.html
+
+5. Stage and commit the newly styled experimentalrevert file to the rainbow branch
+    - note that the git log shows that the current head is on the -> rainbow branch
+
+                GIT LOG
+    ----------------------------------------------
+        6db5af8 (HEAD -> rainbow) Add rainbow text to experimentalrevert.html
+        4781460 Add experimental revert page
+        7a3645a (tag: v1.0) Update README with tag instruction
+        6a25791 Update README
+        e304f33 Add navigation links.
+        46e2663 Create orange and blue html pages.
+        f870d73 Establish a procedure to efficiently initialze and maintain a clean repository.
+        cbb19fa Create index page.
+
+6. Update the file name for experimentalrevert.html to rainbow.html
+    - the file experimentalrevert.html is considered to be deleted
+    - the replacement is now an untracked file
+
+                GIT STATUS
+    ----------------------------------------------
+        On branch rainbow
+
+        Changes not staged for commit:
+        (use "git add/rm <file>..." to update what will be committed)
+        (use "git restore <file>..." to discard changes in working directory)
+            deleted:    experimentalrevert.html
+
+        Untracked files:
+        (use "git add <file>..." to include in what will be committed)
+            rainbow.html
+
+7. Tell Git to stop tracking experimentalrevert.html and to track rainbow.html
+        $ git rm experimentalrevert.html
+        $ git add rainbow.html
+    - Git understands that the file is being renamed
+
+                GIT STATUS
+    ----------------------------------------------
+    On branch rainbow
+    Changes to be committed:
+        (use "git restore --staged <file>..." to unstage)
+            modified:   README.md
+            renamed:    experimentalrevert.html -> rainbow.html
+
+
