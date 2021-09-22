@@ -1,0 +1,13 @@
+body {
+    padding: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: #111;
+}
+p, ul {
+    margin-bottom: 10px;
+}
+
+ul {
+    margin-left: 20px;
+}
