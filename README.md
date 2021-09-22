@@ -190,4 +190,27 @@ git config --global user.email "email"
         Switched to branch 'main'
 
 5. Tag the current state of the project as the latest stable release
+        $ git tag -a v1.0 - "Stable version of the website" 
     - a tag delineates a project milestone via versions
+    - the above is an annotated tag as indicated by the "-a" flag
+
+6. Scrap the experimental site after viewing the first version 1.0 $ git checkout v1.0
+        $ git revert <checksumID#>
+    - all changes are removed, but the changes are still stored
+    - the commit message for the reverted commit will now be preceeded with "Revert ..."
+
+                GIT LOG
+    ----------------------------------------------    
+        dfda58c (HEAD -> main) Revert "Add experimental revert page"
+        4781460 Add experimental revert page
+        7a3645a (tag: v1.0) Update README with tag instruction
+        6a25791 Update README
+        e304f33 Add navigation links.
+        46e2663 Create orange and blue html pages.
+        f870d73 Establish a procedure to efficiently initialze and maintain a clean repository.
+        cbb19fa Create index page.
+
+7. Add dummy.html, and create a nav link within index to that dummy page
+    - it is not possible to rever this page as it is not committed, and therefore has no commit ID#
+
+8. Undo the uncommitted changes to the snapshot
