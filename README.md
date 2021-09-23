@@ -238,7 +238,7 @@ git reset --hard
 git clean -f
 
 ----------------------------------------------
-BRANCHES
+BRANCHES I
 ----------------------------------------------
 
 1. List the existing branches for this project $ git branch
@@ -369,5 +369,149 @@ BRANCHES
         Deleted branch css (was ee1d1e0).
         * main
         rainbow
+
+COMMANDS USED SO FAR
+----------------------------------------------
+git branch
+
+git branch <branch-name>
+
+git checkout <branch-name>
+
+git merge <branch-name>
+
+git branch -d <branch-name>
+
+git rm <file>
+
+----------------------------------------------
+BRANCHES II
+----------------------------------------------
+1. Checkout the rainbow branch, and then $ git merge main
+    - changes made to the main branch, like the CSS styling, need to be merged into the rainbow feature branch
+    - modifications that affect the rainbow branch will be staged for commit
+    - any conflicts will be noted and Git will request a manual resolve by the user
+
+                GIT STATUS
+    ----------------------------------------------
+        On branch rainbow
+        All conflicts fixed but you are still merging.
+        (use "git commit" to conclude merge)
+
+        Changes to be committed:
+            modified:   README.md
+            modified:   blue.html
+            modified:   index.html
+            modified:   orange.html
+            new file:   style.css
+
+2. Commit the changes git commit -m "Merge branch MAIN with RAINBOW"
+    - styling added to the main branch has been been updated to the rainbow branch
+    - note that the commit is only logged on the rainbow branch
+    - this is a "3-way merge" as rainbow now has an ancestor, a 
+
+        [rainbow fca04c9] Merge branch MAIN with RAINBOW
+
+3. Link the CSS file to rainbow.html and commit the change
+
+4. Link navigation to the rainbow page 
+
+5. Fork an alternative rainbow topic branch $ git branch rainbow-alt
+    - this branch is an experiment on the experiment
+
+6. Modify rainbow.html and the stylesheet by changing from colorful text to a colorful background while on branch rainbow-alt
+
+7. Git commit -a -m "Make a REAL rainbow"
+
+
+HOTFIX
+----------------------------------------------
+1. Checkout the main branch, create a new branch called news-hotfix, and then check it out
+    - a time-sensitive update is often required to a main project
+    - rainbow and rainbow-alt will be unaffected
+
+2. Add Indigo page news-1.html, link it to the index news section, link the stylesheet, and add a navigation link back to index from the Indigo page
+
+3. Stage and commit all of these changes
+
+3. Merge the news-hotfix branch with the main branch
+    - this is a simple fast-forward merge
+        $ git checkout main
+        $ git merge news-hotfix
+
+        Updating fc2ed2f..ad69016
+        Fast-forward
+        index.html  |  7 +++----
+        news-1.html | 18 ++++++++++++++++++
+        2 files changed, 21 insertions(+), 4 deletions(-)
+        create mode 100644 news-1.html
+
+4. Delete the news-hotfix branch
+    - this branch is no longer needed
+    - this is a simple, but safe, way to add updates to main
+
+RETURN TO RAINBOW FEATURE BRANCH
+----------------------------------------------
+8. Checkout the feature branch rainbow, and add a news item to index.html 'Check out our new RAINBOW page!' that links to rainbow.html
+    - clearly this will create conflict, as the news-hotfix branch merge modified these lines
+
+9. Commit all changes and then merge rainbow to main
+    - a merge conflict will require manual resolution
+    - this manual was updated (no conflicts, just added lines), 
+    - git uses these <<==>> symbols to indicate merge conflict locations
+    - $ git diff in the CLI, vs code, and live site all have these symbols
+
+                    GIT BRANCH (main)
+    ----------------------------------------------
+        Auto-merging index.html
+        CONFLICT (content): Merge conflict in index.html
+        Automatic merge failed; fix conflicts and then commit the result.
+
+                    VS CODE
+    ----------------------------------------------
+ <!-- 
+ <<<<<<< HEAD
+            <li><a href="news-1.html"><em>Indigo is the way to go!</em></a></li>
+    =======
+            <li><em>Check out our new <a href="<a href="rainbow.html"><span style="color: red;">R</span><span style="color: #f90;">A</span><span style="color: rgb(228, 228, 9);">I</span><span style="color: rgb(134, 180, 42);">N</span><span style="color: rgb(13, 172, 172);">B</span><span style="color: rgb(98, 14, 158);">O</span><span style="color: rgb(105, 7, 105);">W</span></a> page!</em></li>
+>>>>>>> rainbow
+-->
+
+10. Accept both changes in VS Code; stage and commit (no message) to resolve the conflict
+    - no -m is required as git creates its own conflicts list
+    - a commit is required after resolving a conflict resolution
+
+
+                  GIT STATUS (pre-conflict resolution)
+    ----------------------------------------------
+        On branch main
+        You have unmerged paths.
+        (fix conflicts and run "git commit")
+        (use "git merge --abort" to abort the merge)
+
+        Changes to be committed:
+            modified:   README.md
+            modified:   blue.html
+            modified:   orange.html
+            new file:   rainbow.html
+
+        Unmerged paths:
+        (use "git add <file>..." to mark resolution)
+            both modified:   index.html
+
+
+                  GIT STATUS (post-conflict resolution)
+    ----------------------------------------------
+        On branch main
+        All conflicts fixed but you are still merging.
+        (use "git commit" to conclude merge)
+
+        Changes to be committed:
+            modified:   README.md
+            modified:   blue.html
+            modified:   index.html
+            modified:   orange.html
+            new file:   rainbow.html
+
 
 
