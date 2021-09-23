@@ -238,7 +238,7 @@ git reset --hard
 git clean -f
 
 ----------------------------------------------
-BRANCHES
+BRANCHES I
 ----------------------------------------------
 
 1. List the existing branches for this project $ git branch
@@ -383,3 +383,42 @@ git merge <branch-name>
 git branch -d <branch-name>
 
 git rm <file>
+
+----------------------------------------------
+BRANCHES II
+----------------------------------------------
+1. Checkout the rainbow branch, and then $ git merge main
+    - changes made to the main branch, like the CSS styling, need to be merged into the rainbow feature branch
+    - modifications that affect the rainbow branch will be staged for commit
+    - any conflicts will be noted and Git will request a manual resolve by the user
+
+                GIT STATUS
+    ----------------------------------------------
+        On branch rainbow
+        All conflicts fixed but you are still merging.
+        (use "git commit" to conclude merge)
+
+        Changes to be committed:
+            modified:   README.md
+            modified:   blue.html
+            modified:   index.html
+            modified:   orange.html
+            new file:   style.css
+
+2. Commit the changes git commit -m "Merge branch MAIN with RAINBOW"
+    - styling added to the main branch has been been updated to the rainbow branch
+    - note that the commit is only logged on the rainbow branch
+    - this is a "3-way merge" as rainbow now has an ancestor, a 
+
+        [rainbow fca04c9] Merge branch MAIN with RAINBOW
+
+3. Link the CSS file to rainbow.html and commit the change
+
+4. Link navigation to the rainbow page 
+
+5. Fork an alternative rainbow topic branch $ git branch rainbow-alt
+    - this branch is an experiment on the experiment
+
+6. Modify rainbow.html and the stylesheet by changing from colorful text to a colorful background while on branch rainbow-alt
+
+7. Git commit -a -m "Make a REAL rainbow"
