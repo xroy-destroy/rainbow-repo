@@ -2,6 +2,10 @@
 I'm following Ry's Git Tutorial, a guide I found while desperately searching Google.
 My object is to establish a procedure to efficiently initialze and maintain a clean repository. This is for my personal study.
 
+
+----------------------------------------------
+THE BASICS
+----------------------------------------------
 1. Create your index.html file-- make it cute!
 
 2. cd to its directory location, and execute $ git init 
@@ -145,7 +149,7 @@ My object is to establish a procedure to efficiently initialze and maintain a cl
         e304f33 (HEAD -> main) Add navigation links.
         cbb19fa Create index page.
 
-COMMANDS USED SO FAR
+NEW COMMANDS
 ----------------------------------------------
 git init
 
@@ -161,6 +165,10 @@ git config --global user.name "name"
 
 git config --global user.email "email"
 
+
+----------------------------------------------
+UNDOING CHANGES
+----------------------------------------------
 1. Pull up a simplified log and checkout a previous repository snapshot
         $ git log --oneline
         $ git checkout <checksumID#>
@@ -225,7 +233,7 @@ git config --global user.email "email"
 9. dummy.html remains untracked, so delete it with $ git clean -f
     - both 'reset' and 'clean' operate on the working directory and are PERMANENT
 
-COMMANDS USED SO FAR
+NEW COMMANDS
 ----------------------------------------------
 git checkout <commit-id>
 
@@ -236,6 +244,7 @@ git revert <commit-id>
 git reset --hard
 
 git clean -f
+
 
 ----------------------------------------------
 BRANCHES I
@@ -370,7 +379,7 @@ BRANCHES I
         * main
         rainbow
 
-COMMANDS USED SO FAR
+NEW COMMANDS
 ----------------------------------------------
 git branch
 
@@ -383,6 +392,7 @@ git merge <branch-name>
 git branch -d <branch-name>
 
 git rm <file>
+
 
 ----------------------------------------------
 BRANCHES II
@@ -513,5 +523,18 @@ RETURN TO RAINBOW FEATURE BRANCH
             modified:   orange.html
             new file:   rainbow.html
 
+11. Merge rainbow-alt (i like it better)
 
+12. Clean up the feature branches
+    - accidentally created a branch named 'checkout'
+    - if any changes were present in 'checkout', the '-D' flag would be required as it is not merged with the main branch
+    - rainbow no longer needed
+        $ git branch -d rainbow
+        $ git branch -d rainbow-alt
+        $ git branch -D checkout
+
+NEW COMMANDS
+----------------------------------------------
+$ git branch -d
+$ git branch -D
 
