@@ -422,3 +422,38 @@ BRANCHES II
 6. Modify rainbow.html and the stylesheet by changing from colorful text to a colorful background while on branch rainbow-alt
 
 7. Git commit -a -m "Make a REAL rainbow"
+
+
+HOTFIX
+----------------------------------------------
+1. Checkout the main branch, create a new branch called news-hotfix, and then check it out
+    - a time-sensitive update is often required to a main project
+    - rainbow and rainbow-alt will be unaffected
+
+2. Add Indigo page news-1.html, link it to the index news section, link the stylesheet, and add a navigation link back to index from the Indigo page
+
+3. Stage and commit all of these changes
+
+3. Merge the news-hotfix branch with the main branch
+    - this is a simple fast-forward merge
+        $ git checkout main
+        $ git merge news-hotfix
+
+        Updating fc2ed2f..ad69016
+        Fast-forward
+        index.html  |  7 +++----
+        news-1.html | 18 ++++++++++++++++++
+        2 files changed, 21 insertions(+), 4 deletions(-)
+        create mode 100644 news-1.html
+
+4. Delete the news-hotfix branch
+    - this branch is no longer needed
+    - this is a simple, but safe, way to add updates to main
+
+RETURN TO RAINBOW FEATURE BRANCH
+----------------------------------------------
+8. Checkout the feature branch rainbow, and add a news item to index.html 'Check out our new RAINBOW page!' that links to rainbow.html
+    - clearly this will create conflict, as the news-hotfix branch merge modified these lines
+
+9. Commit all changes and then merge rainbow to main
+    - a merge conflict will require manual resolution
