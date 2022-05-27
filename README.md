@@ -1,5 +1,5 @@
 
-I'm following Ry's Git Tutorial, a guide I found while desperately searching Google.
+I'm following Ry's Git Tutorial.
 My object is to establish a procedure to efficiently initialze and maintain a clean repository. This is for my personal study.
 
 
