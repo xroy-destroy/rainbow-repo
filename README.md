@@ -1,6 +1,6 @@
 
 I'm following Ry's Git Tutorial.
-My object is to establish a procedure to efficiently initialze and maintain a clean repository. This is for my personal study.
+My object is to establish a procedure to efficiently initialze and maintain a clean repository. These are notes for my personal study.
 
 
 ----------------------------------------------
